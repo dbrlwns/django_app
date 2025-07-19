@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>블로그 리스트 페이지</h1>
+  <a href="add/">포스트 생성</a>
+
+  <div id="post-container">
+      {% for post in posts %}
+      {% if post.thumbnail %}
+        <img src="{{ post.thumbnail.url }}" alt="" height="150" style="display: inline-block">
+      {% else %}
+        <img src="" alt="" style="display: inline-block">
+      {% endif %}
+      <a href="{{ post.id }}">
+      <h3 style="display: inline-block;">{{ post.id }}. {{ post.title }}, 댓글 수: {{post.comment_set.count}}</h3>
+      </a><p>{{ post.content | truncatechars:100 }}</p>
+      {% endfor %}
+  </div>
+</body>
+</html>
