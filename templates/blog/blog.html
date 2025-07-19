@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+    블로그 상세 페이지
+    <br>
+    <img src="{{ post.thumbnail.url }}" alt="" height="300">
+    <h1>{{ post.title }}</h1>
+
+
+    첫번째 댓글 : {{ post.comment_set.first.content }}
+</body>
+</html>

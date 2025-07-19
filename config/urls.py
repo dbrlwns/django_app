@@ -19,8 +19,18 @@ from django.urls import path, include
 
 from config.views import index
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('pomo/', include('pomo.urls')),
+    path('blog/', include('blog.urls')),
 ]
+
+
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)
