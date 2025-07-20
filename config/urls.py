@@ -27,6 +27,7 @@ urlpatterns = [
     path('', index),
     path('pomo/', include('pomo.urls')),
     path('blog/', include('blog.urls')),
+    path('users/', include('users.urls')),
 ]
 
 
