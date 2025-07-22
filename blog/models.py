@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Post(models.Model):
     title = models.CharField("제목", max_length=20)
