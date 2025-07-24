@@ -15,7 +15,7 @@
       {% else %}
         <img src="" alt="" style="display: inline-block">
       {% endif %}
-      <a href="{{ post.id }}">
+      <a href="{% url 'blog:view-blog' post.id %}">
       <h3 style="display: inline-block;">{{ post.id }}. {{ post.title }}, 댓글 수: {{post.comment_set.count}}</h3>
       </a><p>{{ post.content | truncatechars:100 }}</p>
       {% endfor %}

@@ -1,12 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <style>
+
+        .navbar {
+            padding: 0;
+        }
+        .navbar-brand {
+            padding: 0;
+            margin: -10px
+        }
+        .navbar-logo {
+            height: 60px;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar bg-dark ">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+
+            <!-- 왼쪽: 로고 -->
+            <a class="navbar-brand text-white" href="/">
+              <img src="/media/django.png" alt="Logo" class="navbar-logo d-inline-block align-text-top">
+            </a>
+
+            <!-- 가운데: 링크들 -->
+            <div class="d-flex gap-3">
+              <a class="nav-link text-white" href="admin/">Admin</a>
+              <a class="nav-link text-white" href="pomo/">pomo</a>
+              <a class="nav-link text-white" href="blog/">blog</a>
+            </div>
+
+            <!-- 오른쪽: 사용자 정보 -->
+            <div class="d-flex align-items-center text-white gap-2">
+                {% if user.is_authenticated %}
+                <span>{{ user }} 님</span>
+                <a href="users/logout/" class="btn btn-outline-light btn-sm">Logout</a>
+                {% else %}
+                <a href="users/" class="btn btn-outline-light btn-sm">Login</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </nav>
     {% block content %}{% endblock %}
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </html>
