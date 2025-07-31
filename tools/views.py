@@ -4,6 +4,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from PIL import Image
 
+import requests
+from bs4 import BeautifulSoup
+
+
 
 # Create your views here.
 def tool_index(request):
@@ -49,3 +53,44 @@ def imgToPdf(request):
 
 
 
+def crawling(request):
+    result = None
+    if request.method == 'POST':
+        url = request.POST.get('url')
+        keyword = request.POST.get('keyword')
+        try:
+            res = requests.get('https://' + url)
+            res.raise_for_status()
+            soup = BeautifulSoup(res.text, 'html.parser')
+            elements = soup.find_all(keyword)
+            if elements:
+                extracted = [element.get_text() for element in elements]
+                result = "<br>".join(extracted)
+            else:
+                result = "keyword is not exist"
+        except Exception as e:
+            result = f"에러 {e}"
+    content = {
+        'result' : result,
+    }
+    return render(request, 'tools/crawling.html', content)
+
+
+
+import os
+from dotenv import load_dotenv
+load_dotenv()
+from google import genai
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+def ai_view(request):
+    result = None
+    if request.method == 'POST':
+        user_input = request.POST.get('query')
+        if user_input:
+            result = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=user_input
+            ).text
+
+
+    return render(request, 'tools/geminiBot.html', {'result': result})

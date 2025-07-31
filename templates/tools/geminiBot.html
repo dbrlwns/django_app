@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    GEMINI Page using dotenv
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" required name="query">
+        <input type="submit" value="제출">
+    </form>
+
+    {% if result %}
+    <h3>{{ result }}</h3>
+    {% endif %}
+</body>
+</html>

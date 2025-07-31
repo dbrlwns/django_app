@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1>Crawling Page</h1>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="text" name="url" required placeholder="example.com">
+    <input type="text" name="keyword" placeholder="ex) title">
+    <input type="submit" value="Start">
+  </form>
+
+  {% if result %}
+  <hr>
+  <pre>{{ result }}</pre>
+  {% endif %}
+</body>
+</html>
