@@ -1,16 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-</head>
-<body>
-    블로그 상세 페이지
-    <br>
-    <img src="{{ post.thumbnail.url }}" alt="" height="300">
-    <h1>{{ post.title }}</h1>
+{% extends 'base.html' %}
 
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            블로그 상세 페이지
+            <br>
+            <img src="{{ post.thumbnail.url }}" alt="" height="300">
+            <h2>{{ post.title }}</h2>
+        </div>
+        <div class="col-md-3">
+            <h3>Comments</h3>
+            {% for comment in post.comment_set.all %}
+                <h4>{{ comment.author.username  }} : {{ comment.content }}
+                    {% if comment.author.username == user.username %}
+                    <a href="/blog/delete/comment/{{ comment.id }}/">
+                        <button class="btn btn-danger btn-sm">X</button>
+                    </a>
+                    {% endif %}
+                </h4>
 
-    첫번째 댓글 : {{ post.comment_set.first.content }}
-</body>
-</html>
+            {% endfor %}
+            {% if user.is_authenticated %}
+            <form method="POST" >
+                {% csrf_token %}
+                <input type="text" name="comment">
+                <input type="submit" value="작성">
+            </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

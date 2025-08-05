@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'tools/index.html' %}
+
+
+{% block tool_content %}
     GEMINI Page using dotenv
     <form method="POST">
         {% csrf_token %}
@@ -15,5 +12,4 @@
     {% if result %}
     <h3>{{ result }}</h3>
     {% endif %}
-</body>
-</html>
+{% endblock %}

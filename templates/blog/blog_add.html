@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
   <h1>블로그 포스트 추가</h1>
 
   <div id="post-add">
@@ -21,5 +17,4 @@
       <button type="submit">작성</button>
     </form>
   </div>
-</body>
-</html>
+{% endblock %}

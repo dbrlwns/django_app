@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import User
 
 
 # Create your models here.
@@ -12,6 +13,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     content = models.TextField("댓글 내용")
 
     def __str__(self):

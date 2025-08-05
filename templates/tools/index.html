@@ -1,13 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tool Index</title>
-</head>
-<body>
-  Tool Index
-    <a href="imgToPdf/"><h1>img to pdf</h1></a>
-    <a href="crawling/"><h1>Crawling</h1></a>
-    <a href="ai/"><h1>GEMINI</h1></a>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+  <div class="d-flex align-items-start col-md-2">
+    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <h1>Tool page</h1>
+      <a href="/"><button class="nav-link" type="button" role="tab" aria-selected="true">Home</button></a>
+      <a href="/tools/imgToPdf/"><button class="nav-link" type="button" role="tab" aria-selected="false">img to pdf</button></a>
+      <a href="/tools/crawling/"><button class="nav-link" type="button" role="tab" aria-selected="false">Crawling</button></a>
+      <a href="/tools/ai/"><button class="nav-link" type="button" role="tab" aria-selected="false">GEMINI</button></a>
+      <a><button class="nav-link" type="button" aria-selected="false" disabled>추가예정</button></a>
+    </div>
+  </div>
+  <div class="col-md-10" style="border-left: 2px solid black;">
+    {% block tool_content %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
